@@ -10,8 +10,39 @@ function recorrido ($datos){
  
 }
 function media ($datos){
-    $media = avg($datos);
+    $media = array_sum($datos)/count($datos);
    return $media;
+   
+}
+function moda ($datos){
+    $conteo = array_count_values($datos);
+    arsort($conteo);
+    $moda_valor = key($conteo);
+    $moda_repeticiones = current($conteo);
+
+    if ($moda_repeticiones == max($conteo)) {
+        return "Conjunto multimodal: Valor que más se repite: $moda_valor, Número de repeticiones: $moda_repeticiones";
+    } else {
+        return "Conjunto unimodal: Valor que más se repite: $moda_valor, Número de repeticiones: $moda_repeticiones";
+    }
+   
+}
+function mediana ($datos){
+    sort($datos);
+    $count = count($datos);
+    $mediana = ($count % 2 == 0) ? ($datos[$count/2 - 1] + $datos[$count/2]) / 2 : $datos[floor($count/2)];
+    
+    return "Mediana (Me o Q2): $mediana";
+   
+}
+
+function varianzadesviacionTipica ($datos){
+    $count = count($datos);
+    $media = array_sum($datos) / $count;
+    $varianza = array_sum(array_map(function($x) use ($media) { return pow($x - $media, 2); }, $datos)) / $count;
+    $desviacion_tipica = sqrt($varianza);
+
+    return "Varianza: $varianza, Desviación Típica (SD): $desviacion_tipica";
    
 }
 function calcularCuartiles($datos) {
@@ -29,12 +60,23 @@ function calcularCuartiles($datos) {
 
     return ['Q1' => $q1, 'Q3' => $q3];
 }
+/////////////
 $maxmin = recorrido($datos);
-echo ("Recorrido: ". $maxmin);
+echo ("Recorrido: ". $maxmin . "</br>");
+/////////////
 $mediaa =media($datos);
-echo ("Media: ". $mediaa);
+echo ("Media: ". $mediaa . "</br>");
+///////////////////////////////////
+$mostrarModa = moda($datos);
+echo moda($datos) . "\n" . "</br>";
+///////////////////////////////////
+$mostrarMediana = mediana($datos);
+echo mediana($datos) . "\n" . "</br>";
+///////////////////////////////////
+$mostrarDesviacion = varianzadesviacionTipica($datos);
+echo $mostrarDesviacion . "\n"  . "</br>";
+//////////////////////////
 $resultados = calcularCuartiles($datos);
 echo "Q1: " . $resultados['Q1'] . "\n" . "</br>";
-echo "Q3: " . $resultados['Q3'] . "\n";
-
+echo "Q3: " . $resultados['Q3'] . "\n" . "</br>";
 ?>
