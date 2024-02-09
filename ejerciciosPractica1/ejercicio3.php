@@ -32,7 +32,7 @@ function mediana ($datos){
     $count = count($datos);
     $mediana = ($count % 2 == 0) ? ($datos[$count/2 - 1] + $datos[$count/2]) / 2 : $datos[floor($count/2)];
     
-    return "Mediana (Me o Q2): $mediana";
+    return "Mediana: $mediana";
    
 }
 
@@ -42,7 +42,7 @@ function varianzadesviacionTipica ($datos){
     $varianza = array_sum(array_map(function($x) use ($media) { return pow($x - $media, 2); }, $datos)) / $count;
     $desviacion_tipica = sqrt($varianza);
 
-    return "Varianza: $varianza, Desviación Típica (SD): $desviacion_tipica";
+    return "Varianza: $varianza  </br> Desviación Típica (SD): $desviacion_tipica";
    
 }
 function calcularCuartiles($datos) {
@@ -58,7 +58,7 @@ function calcularCuartiles($datos) {
     $q3 = $datos[floor($q3_pos) - 1];
     $q4 = $datos[floor($q4_pos) - 1];
 
-    return ['Q1' => $q1, 'Q3' => $q3];
+    return ['Q1' => $q1,'Q2' => $q2, 'Q3' => $q3];
 }
 /////////////
 $maxmin = recorrido($datos);
@@ -78,5 +78,6 @@ echo $mostrarDesviacion . "\n"  . "</br>";
 //////////////////////////
 $resultados = calcularCuartiles($datos);
 echo "Q1: " . $resultados['Q1'] . "\n" . "</br>";
+echo "Q2: " . $resultados['Q2'] . "\n" . "</br>";
 echo "Q3: " . $resultados['Q3'] . "\n" . "</br>";
 ?>
