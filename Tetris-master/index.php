@@ -19,23 +19,19 @@
     <div id="container">
         <img id="logo" src="tetris.png" width="250px" height="250px">
         <center>
-            <h1>Welcome to Tetris</h1>
-            <p>Enter credentials to play</p>
-            <?php 
-	            if($_GET['login']=="failed")
-	            	echo "<p class=\"error\">Invalid Username/Password, try again!</p>"; 
-	        ?>
+            <h1>Bienvenido a TETRIS-DAW</h1>
+            <p>Inicia sesión para poder jugar</p>
             <form name="login" value="login" action="flogin.php" method="post">
-                <input type="text" class="textbox" name="username" placeholder="Username">
+                <input type="text" class="textbox" name="username" placeholder="Usuario">
                 <br>
-                <input type="password" class="textbox" name="password" placeholder="Password">
+                <input type="password" class="textbox" name="password" placeholder="Contraseña">
                 <br>
                 <input type="submit" name="login" class="buttonb" value="LOGIN">
             </form>
             <hr>
             <br>
-            <span>Don't have an account?&nbsp;</span>
-            <a href="signup.php" class="buttong"><i class="fa fa-user"></i>&nbsp;SIGN UP</a>
+            <span>Quieres crear una cuenta?&nbsp;</span>
+            <a href="signup.php" class="buttong"><i class="fa fa-user"></i>&nbsp;REGISTRATE</a>
         </center>
     </div>
     </div>

@@ -16,6 +16,6 @@ function resolverEcuacionSegundoGrado($a, $b, $c) {
     echo "sin solucion";
   }
 }
-resolverEcuacionSegundoGrado(1, -3, 2); 
+resolverEcuacionSegundoGrado(1, 2, 4); 
 
 ?>
