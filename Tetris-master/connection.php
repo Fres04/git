@@ -3,12 +3,11 @@
 	
 	try {
 	//DATABASE INFO
-	$dbhost = '10.200.60.5';
 	$dbname="mktetris";
 	$dbuser="mk";
 	$dbpass="mkpass";
 	
-	$conn = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
+	$conn = new PDO("mysql:host=localhost;dbname=$dbname", $dbuser, $dbpass);
 	//Test if connection was a success
 	/*
 		$_SESSION['success']="Connection Successful";
