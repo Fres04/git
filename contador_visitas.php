@@ -10,7 +10,7 @@ if($visitas===3){
     unset ($_COOKIE['visitas']);
     echo "cookie destruida";
 }else{
-    setcookie('visor','1',time()+3600*24); //Duracion
+    setcookie('visor',$visitas,time()+3600*24); //Duracion
     echo "Bienvenido por $visitas vez";
 }
 }
