@@ -1,4 +1,3 @@
-<!-- pagina-5.php -->
 <?php
 session_start();
 
