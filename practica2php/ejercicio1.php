@@ -1,4 +1,3 @@
-<!-- pagina-1.php -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
