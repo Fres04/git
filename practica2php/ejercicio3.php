@@ -14,10 +14,10 @@ if (isset($_SESSION["nombre"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario en Dos Pasos - Apellidos</title>
+    <title>Formulario - Apellidos</title>
 </head>
 <body>
-    <h1>Formulario en Dos Pasos - Apellidos</h1>
+    <h1>Formulario - Apellidos</h1>
     <p>Nombre: <?php echo $nombre; ?></p>
     <form action="ejercicio4.php" method="post">
         <label for="apellidos">Apellidos:</label>
