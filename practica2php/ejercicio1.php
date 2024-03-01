@@ -7,7 +7,7 @@
     <title>Formulario</title>
 </head>
 <body>
-    <h1>Formulario en Dos Pasos</h1>
+    <h1>Formulario</h1>
     <form action="ejercicio2.php" method="post">
         <label for="nombre">Nombre:</label>
         <input type="text" id="nombre" name="nombre" required>
