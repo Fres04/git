@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="formularioInscripcion" action="/submit" method="post">
+        <div>
+            <label for="nombreCompleto">Nombre completo:</label>
+            <input type="text" id="nombreCompleto" name="nombreCompleto" required>
+        </div>
+        <div>
+            <label for="profesion">profesion:</label>
+            <select id="profesion" name="profesion">
+                <option value="">Seleccione un curso</option>
+                <option value="carpintero">carpintero</option>
+                <option value="escultor">escultor</option>
+                <option value="fontanero">fontanero</option>
+            </select>
+        </div>
+        <div>
+            <label for="email">Correo electrónico:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+
+        <button type="button" id="enviarFormulario">Enviar</button>
+    </form>
+    <script>
+        //1
+        let nombre =document.getElementById('nombreCompleto');
+                nombre.focus();
+                nombre.onblur=function() {
+                let auxNombre = nombre.value.split(" ");
+                if(auxNombre.length<2){
+                alert("El Nombre debe tener al menos un nombre y un apellido");
+                nombre.reset();
+                nombre.focus();
+                }
+            };
+            //2
+               let profesion = document.getElementById('profesion');
+               profesion.onfocus=function() { 
+                let defecto = "Estudiante";
+                document.getElementsByTagName('option')[0].value =defecto;
+                    profesion.reset();
+                    profesion.focus();
+            };
+            //3
+            email.addEventListener('keyup', function() {
+                let correctogmail = /^[a-z-A-Z0-9._-]+@gmail+\.[a-zA-Z]{2,6}$/;
+                if (!correctogmail.test(email.value)) {
+                    alert("Error en el formato del email");
+                    enviar.reset();
+                    enviar.focus();
+                }
+            })
+            //4
+        let enviarFormulario = document.getElementsByTagName('button')[0];
+ 
+enviarFormulario.onclick = function(){
+    confirm("¿Deseas enviar los siguientes datos: "
+    + nombre.value + profesion.value + email.value);
+    if (confirm){
+        window.location.href=email.value;
+    }
+    else{
+       nombre.value =" ";
+       email.value=" ";
+      profesion.value ="Estudiante";
+        }
+    
+}
+ 
+    </script>
+</body>
+</html>

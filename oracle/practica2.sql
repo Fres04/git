@@ -103,7 +103,7 @@ FROM empleados
 WHERE NUMDE = 100 AND EXISTS (
     SELECT SALAR 
     FROM empleados 
-    WHERE SALAR > 1300);
+    WHERE SALAR > 1300 and numde =100);
 
 --ejercicio10:
 SELECT NOMEM, SALAR
@@ -111,14 +111,14 @@ FROM empleados
 WHERE NUMDE = 100 AND EXISTS (
     SELECT numde 
     FROM departamentos 
-    WHERE SALAR > 2750);
+    WHERE SALAR > 2750 and numde =100);
 --ejercicio11:
 SELECT NOMEM, SALAR
 FROM empleados
 WHERE NUMDE = 100 AND EXISTS (
     SELECT SALAR 
     FROM empleados 
-    WHERE SALAR > 3000);
+    WHERE SALAR > 3000 and numde =100);
 --BD_T5_2_Tarea5.pdf
 --ejericico1:
  select nomem,comis 

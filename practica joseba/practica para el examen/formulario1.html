@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Contacto</title>
+</head>
+<body>
+    <h1>Formulario de Contacto</h1>
+    <form action="#" method="post">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required minlength="3">
+        <br>
+
+        <label for="email">Correo Electrónico:</label>
+        <input type="email" id="email" name="email" required>
+        <br>
+
+        <label for="mensaje">Mensaje:</label>
+        <textarea id="mensaje" name="mensaje" required minlength="10"></textarea>
+        <br>
+
+        <input type="submit" value="Enviar">
+    </form>
+    <script>
+        let nombre =document.getElementById('nombre');
+        nombre.onblur=function() {
+        let auxNombre = nombre.value;
+        if(auxNombre == "" || auxNombre.length < 3){
+        alert("El Nombre debe tener al menos 3 letras");
+        nombre.reset();
+        nombre.focus();
+        }
+    };
+       let email = document.getElementById('email');
+       email.onblur = function(){
+    if(!email.checkValidity()){
+        alert("Por favor ingresa un correo electrónico válido");
+        email.reset();
+        email.focus();
+
+    }   
+       };
+       let mensaje = document.getElementById('mensaje');
+       mensaje.onblur = function (){
+        let auxmensaje =mensaje.value;  
+
+        if (auxmensaje.length <10 || auxmensaje ==""){
+            alert ("El mensaje tiene que tener 10 letras");
+            botonsubmit.reset();
+            botonsubmit.focus();
+        }
+       };
+       botonsubmit=document.getElementsByTagName('input')[2];
+       botonsubmit .addEventListener ('click', function () {
+           if (!nombre.checkValidity()|| !email.checkValidity()||!mensaje.checkValidity()) {
+               return false;
+           }else{
+             alert("Formulario enviado correctamente");
+           }
+        });
+    // botonsubmit.onsubmit = function() {
+    //     if (!nombre.checkValidity()|| !email.checkValidity()||!mensaje.checkValidity()) {
+    //            return false;
+    //       }else{
+    //          alert("Formulario enviado correctamente");
+    //         //   window.location.href='gracias.html';
+    //       }
+    //     };
+    </script>
+</body>
+ <!-- Nombre:
+// Debe contener al menos 3 caracteres.
+// No puede estar vacío.
+// Correo Electrónico:
+// Debe ser una dirección de correo válida (por ejemplo, “usuario@dominio.com”).
+// No puede estar vacío.
+// Mensaje:
+// Debe contener al menos 10 caracteres.
+// No puede estar vacío. -->
+</html>

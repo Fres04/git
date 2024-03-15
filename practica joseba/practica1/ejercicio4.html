@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>titulo</title>
+</head>
+<body>
+    <p>prueba</p>
+    <script>
+        let cuerpo = document.body;
+        cuerpo.onblur = function() {
+            cuerpo.style.backgroundColor = 'black';
+        };
+         cuerpo.onfocus = function() {
+            cuerpo.style.backgroundColor = 'beige';
+        };
+        ////////////////////////////////////////
+//         let cuerpo = document.body;
+// documento.body.addEventListener('blur', function() {
+//     cuerpo.style.backgroundColor = 'black';
+// });
+
+// documento.body.addEventListener('focus', function() {
+//     cuerpo.style.backgroundColor = 'beige';
+// });
+    </script>
+</body>
+</html>

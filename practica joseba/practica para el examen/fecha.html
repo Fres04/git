@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        document.getElementById('fechaNacimiento').addEventListener('change', function() {
+  let fechaNacimiento = new Date(document.getElementById('fechaNacimiento').value);
+  let hoy = new Date();
+  let edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
+  let mes = hoy.getMonth() - fechaNacimiento.getMonth();
+  if (mes < 0 || (mes === 0 && hoy.getDate() < fechaNacimiento.getDate())) {
+    edad--;
+  }
+  if (edad < 18) {
+    document.getElementById('mensaje').textContent = "Debes ser mayor de 18 años.";
+  } else {
+    document.getElementById('mensaje').textContent = "¡Bienvenido!";
+  }
+});
+    </script>
+</body>
+</html>
