@@ -2,17 +2,20 @@
 $conexion = new PDO('mysql:dbname=empresa;host=127.0.0.1', 'root', '');
 
 function comprobar_usuario($nombre, $clave, $conexion){
-    $sql = "SELECT * FROM usuarios WHERE nombre = '$nombre' AND clave = '$clave'";
-
-    $result = $conexion->query($sql);
-
-    if ($result->rowCount() > 0) {
-        $usu = $result->fetch();
+    $sql = "SELECT * FROM usuarios WHERE nombre = :nombre AND clave = :clave";
+    
+    $ok = $conexion->prepare($sql);
+    
+    $ok->execute(array(':nombre' => $nombre, ':clave' => $clave));
+    
+    if ($ok->rowCount() > 0) {
+        $usu = $ok->fetch();
         return $usu;
     } else {
         return false;
     }
 }
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {   
     $usu = comprobar_usuario($_POST['usuario'], $_POST['clave'], $conexion);
     
