@@ -21,7 +21,12 @@ comprobar_sesion();
 	En caso contrario, mostramos el mensaje "Error al actualizar los datos"
 	*/
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        actualizar_restaurantes($_POST);
+       if(!actualizar_restaurantes($_POST)){
+		echo "Error no se ha podido actualizar";
+	   }
+	   else{
+		echo  "<h2>Los cambios han sido guardados correctamente.</h2>";
+	   }
 	}
 	$restaurantes = cargar_restaurantes();
 	if ($restaurantes === FALSE) {
