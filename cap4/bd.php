@@ -137,7 +137,11 @@ function actualizar_restaurantes($datos){
 	$codres=$datos[':codres'];
 	$preprada=$bd->prepare("UPDATE Restaurantes SET Correo = ?, Clave = ?, Pais = ?, CP = ?, Ciudad = ?, Direccion = ?, Rol = ? where Codres = ?");
 	$preprada->execute(array($correos,$claves,$pa,$cp,$ciu,$direc,$roles,$codres));
-	if($preprada.row)
+	if($preprada.rowCount()!=1){
+return false;
+	}else{
+		return true;
+	}
 	
 
 }
