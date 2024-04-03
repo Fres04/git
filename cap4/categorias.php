@@ -19,7 +19,8 @@
 		$categorias = cargar_categorias();
 		if($categorias===false){
 			echo "<p class='error'>Error al conectar con la base datos</p>";
-		}else{
+		}
+		else{
 			echo "<ul>"; //abrir la lista
 			foreach($categorias as $cat){				
 				/*$cat['nombre] $cat['codCat']*/

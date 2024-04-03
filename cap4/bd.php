@@ -23,7 +23,7 @@ function comprobar_usuario($nombre, $clave)//comprobar la contraseña;
 {
 	$res = leer_config(dirname(__FILE__) . "/configuracion.xml", dirname(__FILE__) . "/configuracion.xsd");
 	$bd = new PDO($res[0], $res[1], $res[2]);
-	$ins = "select codRes, correo from restaurantes where correo = '$nombre' 
+	$ins = "select codRes, correo, Rol from restaurantes where correo = '$nombre' 
 			and clave = '$clave'";
 	$resul = $bd->query($ins);
 	if ($resul->rowCount() === 1) {
@@ -122,4 +122,22 @@ function insertar_pedido($carrito, $codRes)
 	}
 	$bd->commit();
 	return $pedido;
+
+}
+function actualizar_restaurantes($datos){
+	$res = leer_config(dirname(__FILE__) . "/configuracion.xml", dirname(__FILE__) . "/configuracion.xsd");
+	$bd = new PDO($res[0], $res[1], $res[2]);
+	$correos=$datos[':correo'];
+	$claves=$datos[':clave'];
+	$pa=$datos[':pais'];
+	$cp=$datos[':cp'];
+	$ciu=$datos[':ciudad'];
+	$direc=$datos[':direccion'];
+	$roles=$datos[':rol'];
+	$codres=$datos[':codres'];
+	$preprada=$bd->prepare("UPDATE Restaurantes SET Correo = ?, Clave = ?, Pais = ?, CP = ?, Ciudad = ?, Direccion = ?, Rol = ? where Codres = ?");
+	$preprada->execute(array($correos,$claves,$pa,$cp,$ciu,$direc,$roles,$codres));
+	if($preprada.row)
+	
+
 }

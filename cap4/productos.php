@@ -19,6 +19,7 @@
 			echo "<p class='error'>Error al conectar con la base datos</p>";
 			exit;
 		}
+		$_SESSION['cat'] =$_GET['categoria'];
 		echo "<h1>". $cat['nombre']. "</h1>";
 		echo "<p>". $cat['descripcion']."</p>";		
 		echo "<table>"; //abrir la tabla
