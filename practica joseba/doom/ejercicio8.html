@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cambiar fondo de página al hacer clic en botones</title>
+  <style>
+    body {
+      transition: background-color 0.5s;
+      text-align: center;
+      padding-top: 100px;
+    }
+    button {
+      font-size: 16px;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <button id="boton1">Fondo 1</button>
+  <button id="boton2">Fondo 2</button>
+  <button id="boton3">Fondo 3</button>
+
+  <script>
+    var boton1 = document.getElementById("boton1");
+    var boton2 = document.getElementById("boton2");
+    var boton3 = document.getElementById("boton3");
+
+    boton1.addEventListener("click", function() {
+      document.body.style.backgroundColor = "lightblue";
+    });
+
+    boton2.addEventListener("click", function() {
+      document.body.style.backgroundColor = "lightgreen";
+    });
+
+    boton3.addEventListener("click", function() {
+      document.body.style.backgroundColor = "lightpink";
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mostrar Contenido Completo al Clic en Enlace</title>
+  <style>
+    #contenidoOculto {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <p id="contenidoOculto">Este es el contenido oculto que se mostrará al hacer clic en el enlace.</p>
+  <a href="#" id="enlaceMostrar">Mostrar Contenido</a>
+  
+  <script>
+    let enlaceMostrar = document.getElementById("enlaceMostrar");
+    let contenidoOculto = document.getElementById("contenidoOculto");
+
+    enlaceMostrar.addEventListener("click", function() {
+      contenidoOculto.style.display = "block";
+      enlaceMostrar.style.display = "none";
+    });
+  </script>
+</body>
+</html>

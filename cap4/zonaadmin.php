@@ -12,10 +12,11 @@ comprobar_sesion();
 </head>
 <body>
 <?php require 'cabecera.php';?>
-
 		<h1>Zona de administradores</h1>
         <ul>
        <li><a href="datos_usu.php">Datos del restaurante</a></li> 
+        </ul>
+        <li><a href="altas_bajas.php">Datos del restaurante</a></li> 
         </ul>
 </body>
 </html>
