@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        li{
+            border: solid 1px;
+            margin-top: 2px;
+            width: auto;
+        }
+ul{
+    list-style-type: none;
+    border:solid 1px;
+    width: 10%;
+    
+}
+    </style>
+    <script>
+        //añadir los eventos listener que posterirormente creo
+        //cojemos el imput junto con su value.
+        document.addEventListener('DOMContentLoaded', function() {
+			document.querySelector('input[value="AniadirElemento"]').addEventListener('click', aniadir);
+			document.querySelector('input[value="BorrarElemento"]').addEventListener('click', borrar);
+		});
+
+        function aniadir(){
+            // añadir creo un li con el create element, hacemos un swich con un random
+            // el cual metemos texto1,texto2,texto3,texto4 dependiendo si es 1,2,3,4
+            let texto = document.createElement("li");
+            let aux = Math.floor(Math.random() * 4 + 1);
+            switch (aux){
+			case 1:
+				texto.innerHTML = "texto1";
+				break;
+			case 2:
+				texto.innerHTML = "texto2";
+				break;
+			case 3:
+				texto.innerHTML = "texto3";
+				break;
+			case 4:
+				texto.innerHTML = "texto4";
+				break;	
+		} 
+        document.getElementById("lista").appendChild(texto);
+		document.getElementById("ultimo").value = texto.innerHTML;
+        }
+        function borrar(){
+        //cojemos el ultimo hijo y lo borramos
+			let aux2 = document.getElementById("lista");
+            document.getElementById("ultimo").value = aux2.lastElementChild.innerHTML;
+			let ultimoElemento = aux2.lastElementChild;
+			aux2.removeChild(ultimoElemento);
+			let borrarUltimoElemento = aux2.lastElementChild;
+          
+		
+        }
+    </script>
+</head>
+<body>
+    <table>
+    <ul id="lista">
+        <li>Lorem ipsum, dolor sit amet</li></ul>
+</table>
+<input type="button" name="boton" value="AniadirElemento">
+<input type="button" name="boton" value="BorrarElemento"></br></br>
+Ultimo:<input type="text" name="texto" id="ultimo">
+</body>
+</html>

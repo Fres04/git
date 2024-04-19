@@ -4,21 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Modificación de Estilos</title>
-  <style>
-    body {
-      font-size: 16px;
-      transition: font-size 0.5s, background-color 0.5s;
-    }
-
-    .seccion-especial {
-      font-size: 20px;
-      transition: font-size 0.5s, background-color 0.5s;
-    }
-
-    .seccion-especial:hover {
-      font-family: Arial, sans-serif;
-    }
-  </style>
 </head>
 <body>
   <h1>Aumenta el tamaño de la fuente de toda la página</h1>
@@ -27,11 +12,18 @@
   <p>Color normal</p>
 
   <div class="seccion-especial">
-    <h1>Aumenta el tamaño de la fuente solo de esta sección</h1>
-    <p>Tamaño normal</p>
-    <h2>Cambia el color del fondo de esta sección</h2>
-    <p>Color normal</p>
-    <a href="#" onmouseover="this.style.fontFamily='Arial, sans-serif';">Cambia el tipo de fuente empleada en esta sección al situar el ratón encima de este vínculo</a>
+    <a>Aumenta el tamaño de la fuente solo de esta sección</a>
+    <a>Tamaño normal</a>
+    <a>Cambia el color del fondo de esta sección</a>
+    <a>Color normal</a>
+    <a href="#" onmouseover="this.style.fontFamily='20px';">Cambia el tipo de fuente empleada en esta sección al situar el ratón encima de este vínculo</a>
   </div>
+  <script>
+let prueba=document.getElementsByClassName("seccion-especial");
+prueba.onclick();
+let  parrafo = this.children;
+parrafo[3].style.backgroundColor='red';
+
+  </script>
 </body>
 </html>

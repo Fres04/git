@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manipulación de Tabla con JavaScript</title>
+    <style>
+        table{margin-top: 20px;}
+        table,td {
+            border: 3px solid purple;
+        }
+    </style>
+</head>
+<body>
+    <button id="btnAdd">Añadir fila al principio</button>
+    <button id="btnMove">Mover primera fila al final</button>
+    <button id="btnSwap">Intercambiar primera y última fila </button><br>
+    <a id="aDelete" href="">Eliminar última fila</a><br>
+    <a id="aColorPar" href="">Cambiar color a filas pares</a><br>
+    <table id="miTabla" >
+        <tbody id="cuerpoTabla">
+        <tr id="fila-1">
+            <td>Fila 1, Columna 1</td>
+            <td>Fila 1, Columna 2</td>
+            <td>Fila 1, Columna 3</td>
+        </tr>
+        <tr id="fila-2">
+            <td>Fila 2, Columna 1</td>
+            <td>Fila 2, Columna 2</td>
+            <td>Fila 2, Columna 3</td>
+        </tr>
+    </tbody>
+    </table>
+    <script src="tabla.js"></script>
+</body>
+</html>
