@@ -1,0 +1,11 @@
+
+[2024-05-07T10:03:15.076106+02:00] mi_aplicacion.WARNING: Mensaje de advertencia [] []
+[2024-05-07T10:03:15.077146+02:00] mi_aplicacion.ERROR: Mensaje de error [] []
+[2024-05-07T10:03:15.077181+02:00] mi_aplicacion.CRITICAL: Mensaje crítico [] []
+[2024-05-07T10:03:15.077202+02:00] mi_aplicacion.ALERT: Mensaje de alerta [] []
+[2024-05-07T10:03:15.077221+02:00] mi_aplicacion.EMERGENCY: Mensaje de emergencia [] []
+[2024-05-07T10:03:17.347274+02:00] mi_aplicacion.WARNING: Mensaje de advertencia [] []
+[2024-05-07T10:03:17.348072+02:00] mi_aplicacion.ERROR: Mensaje de error [] []
+[2024-05-07T10:03:17.348103+02:00] mi_aplicacion.CRITICAL: Mensaje crítico [] []
+[2024-05-07T10:03:17.348122+02:00] mi_aplicacion.ALERT: Mensaje de alerta [] []
+[2024-05-07T10:03:17.348291+02:00] mi_aplicacion.EMERGENCY: Mensaje de emergencia [] []

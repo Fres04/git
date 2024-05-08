@@ -55,6 +55,7 @@ function cargar_categorias()
 	//si hay 1 o más
 	return $resul;
 }
+
 function cargar_categoria($codCat)
 {
 	$res = leer_config(dirname(__FILE__) . "/configuracion.xml", dirname(__FILE__) . "/configuracion.xsd");
@@ -70,6 +71,7 @@ function cargar_categoria($codCat)
 	//si hay 1 o más
 	return $resul->fetch();
 }
+
 function cargar_productos_categoria($codCat)
 {
 	$res = leer_config(dirname(__FILE__) . "/configuracion.xml", dirname(__FILE__) . "/configuracion.xsd");

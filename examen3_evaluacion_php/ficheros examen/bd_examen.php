@@ -1,68 +1,73 @@
 <?php
 require_once "bd.php";
-function cartera_productos($nombre) {
+
+function cartera_productos(){
     $res = leer_config(dirname(__FILE__) . "/configuracion.xml", dirname(__FILE__) . "/configuracion.xsd");
-    $bd = new PDO($res[0], $res[1], $res[2]);
-    $ins = "SELECT CodProd, Nombre FROM productos WHERE CodProd=?";
-    $resul = $bd->prepare($ins);
-    $resul->execute(array($nombre));
+	$bd = new PDO($res[0], $res[1], $res[2]);
+    $sql="SELECT CodProd, Nombre FROM Productos ORDER BY Nombre";
+    $resul=$bd->query($sql);
     if (!$resul) {
-        $bd->rollBack();
-        echo "Error en la base de datos.";
-        return FALSE;
-    } else {
-        $producto = $resul->fetch(PDO::FETCH_ASSOC);
-        return $producto;
-    }
+		return FALSE;
+	}
+	if ($resul->rowCount() === 0) {
+		return FALSE;
+	}
+	//si hay 1 o más
+	return $resul->fetchALL(PDO::FETCH_ASSOC);
 }
-function eliminar_producto($codigo_producto) {
+function eliminar_producto($codProd){
     $res = leer_config(dirname(__FILE__) . "/configuracion.xml", dirname(__FILE__) . "/configuracion.xsd");
-    $bd = new PDO($res[0], $res[1], $res[2]);
+	$bd = new PDO($res[0], $res[1], $res[2]);
     $bd->beginTransaction();
-$borrar_producto = "DELETE FROM productos WHERE CodProd=?";
-$codigo_producto="DELETE FROM pedidosproductos where CodProd=?";
-$stmt_producto = $bd->prepare($borrar_producto);
-$stmt_producto->execute(array($codigo_producto));
-if ($stmt_producto->rowCount() > 0) {
+    $sql="DELETE FROM pedidosproductos where CodProd = ?";
+    $preparada=$bd->prepare($sql);
+    $resul=$preparada->execute(array($codProd));
+    if (!$resul) {
+        $bd->rollback();
+        return false;
+    } else {
+        $sql="DELETE FROM productos where CodProd = ?";
+        $preparada=$bd->prepare($sql);
+        $resul=$preparada->execute(array($codProd));
+        if (!$resul) {
+            $bd->rollback();
+            return false;
+        }
+    }
     $bd->commit();
     return true;
-} else {
-    $bd->rollBack();
-    return false;
-}
 }
 function cuenta_pedidos($fechaInicio, $fechaFinal) {
     $res = leer_config(dirname(__FILE__) . "/configuracion.xml", dirname(__FILE__) . "/configuracion.xsd");
     $bd = new PDO($res[0], $res[1], $res[2]);
-    $consulta_pedidos = "SELECT COUNT(*) AS total_pedidos FROM pedidos WHERE Fecha BETWEEN ? AND ?";
-    $sql_pedidos = $bd->prepare($consulta_pedidos);
-    $sql_pedidos->execute(array($fechaInicio, $fechaFinal));
-    $resultado_pedidos = $sql_pedidos->fetch(PDO::FETCH_ASSOC);
-    $total_pedidos = $resultado_pedidos['total_pedidos'];
-
-    $consulta_productos = "SELECT productos.Nombre, SUM(pedidosproductos.Unidades) AS Cantidad
-                           FROM pedidos
-                           LEFT JOIN pedidosproductos ON pedidos.CodPed = pedidosproductos.CodPed
-                           LEFT JOIN productos ON pedidosproductos.CodProd = productos.CodProd
-                           WHERE pedidos.Fecha BETWEEN ? AND ?
-                           GROUP BY productos.Nombre";
-    $sql_productos = $bd->prepare($consulta_productos);
-    $sql_productos->execute(array($fechaInicio, $fechaFinal));
-    $resultados_productos = $sql_productos->fetchAll(PDO::FETCH_ASSOC);
-
-    $productos_array = array();
-    foreach ($resultados_productos as $producto) {
-        $nombre_producto = $producto['Nombre'];
-        $cantidad_producto = $producto['Cantidad'];
-        $productos_array[$nombre_producto] = $cantidad_producto;
-    }
-
-    $resultado_final = array(
-        'pedidos' => $total_pedidos,
-        'productos' => $productos_array
-    );
-    return $resultado_final;
     
+    // Consulta preparada para obtener el total de pedidos entre las fechas
+    $sqlPedidos = "SELECT COUNT(*) AS total_pedidos FROM pedidos WHERE fecha >= ? AND fecha <= ?";
+    $stmtPedidos = $bd->prepare($sqlPedidos);
+    $stmtPedidos->execute(array($fechaInicio, $fechaFinal));
+    $totalPedidos = $stmtPedidos->fetchColumn();
+
+    // Consulta preparada para obtener el total de productos pedidos
+    $sqlProductos = "SELECT productos.Nombre, SUM(pedidosproductos.Unidades) AS Cantidad 
+                    FROM pedidos 
+                    LEFT JOIN (pedidosproductos 
+                     LEFT JOIN productos ON pedidosproductos.CodProd=productos.CodProd)
+                    ON pedidos.CodPed = pedidosproductos.CodPed 
+                    WHERE pedidos.Fecha >= ? AND pedidos.Fecha <= ?
+                    GROUP BY productos.Nombre
+                    ORDER BY productos.Nombre";
+    $stmtProductos = $bd->prepare($sqlProductos);
+    $stmtProductos->execute(array($fechaInicio, $fechaFinal));
+    $productos = $stmtProductos->fetchAll(PDO::FETCH_ASSOC);
+
+    $resultado = array(
+        'pedidos' => $totalPedidos,
+        'productos' => $productos
+    );
+
+    return $resultado;
 }
+
+
 
 ?>

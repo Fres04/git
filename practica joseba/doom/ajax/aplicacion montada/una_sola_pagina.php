@@ -25,6 +25,9 @@
 		<h2 id="titulo"></h2>
 		<section id="contenido">
 		</section>
+		<section id="carrito">
+			<script>cargarCarrito2()</script>
+		</section>
 	</section>
 </body>
 </html>

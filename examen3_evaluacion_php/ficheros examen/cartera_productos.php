@@ -27,9 +27,13 @@
         <select name="producto" id="producto" multiple size=10>
         <?php
         // Insertar los productos en las etiquetas option correspondientes
-        $result=cartera_productos($nombre_usuario);
-        foreach ($productos as $producto) {
-            echo "<option value='{$producto['CodProd']}'>{$producto['Nombre']}</option>";
+        $productos = cartera_productos();
+        if($productos===false){
+			echo "<p class='error'>Error al conectar con la base datos</p>";
+		}else{
+            foreach($productos as $producto){
+                echo "<option value=".$producto['CodProd'].">".$producto['Nombre']."</option>";
+            }
         }
         ?>
         </select>
